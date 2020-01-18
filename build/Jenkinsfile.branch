@@ -57,7 +57,7 @@ pipeline {
                 platformStages.platformCleanDockerCompose(rndEE)
               }
             }
-            stash includes: 'src/github.com/mattermost/mattermost-server/dist/**', name: 'eedist'
+            stash includes: 'src/github.com/teamjupitergmu/jupiterserver/dist/**', name: 'eedist'
           }
         }
         stage ('Build TE') {
@@ -77,7 +77,7 @@ pipeline {
                 platformStages.platformCleanDockerCompose(rndTE)
               }
             }
-            stash includes: 'src/github.com/mattermost/mattermost-server/dist/**', name: 'tedist'
+            stash includes: 'src/github.com/teamjupitergmu/jupiterserver/dist/**', name: 'tedist'
           }
         }
       }
@@ -120,7 +120,7 @@ pipeline {
         label 'default-mm-builder'
       }
       steps {
-        dir('src/github.com/mattermost/mattermost-server') {
+        dir('src/github.com/teamjupitergmu/jupiterserver') {
           withCredentials([usernamePassword(credentialsId: 'matterbuild-docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'docker login --username ${DOCKER_USER} --password ${DOCKER_PASS}'
             sh """
@@ -139,7 +139,7 @@ pipeline {
         label 'default-mm-builder'
       }
       steps {
-        dir('src/github.com/mattermost/mattermost-server') {
+        dir('src/github.com/teamjupitergmu/jupiterserver') {
           withCredentials([usernamePassword(credentialsId: 'matterbuild-docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'docker login --username ${DOCKER_USER} --password ${DOCKER_PASS}'
             sh """
